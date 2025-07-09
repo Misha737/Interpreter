@@ -1,13 +1,14 @@
 #pragma once
 
 
-template<typename T>
+#include <string>
+
 class Token {
 protected:
-	T alias;
+	std::string alias;
 	size_t priority;
 public:
-	Token(T alias, size_t priority) : alias(alias), priority(priority) {};
-	const T getAlias() const { return alias; }
+	Token(std::string alias, size_t priority) : alias(alias), priority(priority) {};
+	virtual const std::string getAlias() const { return alias; }
 	const size_t getPriority() const { return priority; };
 };

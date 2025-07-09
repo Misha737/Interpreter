@@ -1,8 +1,21 @@
 #pragma once
 
-#include "NumberToken.h"
+#include "DataToken.h"
 
-class IntegerNumberToken : public NumberToken<int> {
+class IntegerNumberToken : public DataToken {
+private:
+	const int value;
 public:
-	IntegerNumberToken(int alias, size_t priority) : NumberToken<int>(alias, priority) {};
+	IntegerNumberToken(std::string alias, int value)
+		: DataToken(alias), value(value) {};
+	const int getValue() const { return value; };
+	DataToken* operator+(DataToken& other) const override;
+	DataToken* operator-(DataToken& other) const override;
+	DataToken* operator*(DataToken& other) const override;
+	DataToken* operator/(DataToken& other) const override;
+	DataToken* pow(DataToken& pow) const override;
+	DataToken* abs() const override;
+	DataToken* max(DataToken& other) const override;
+	DataToken* min(DataToken& other) const override;
+
 };

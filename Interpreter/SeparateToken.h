@@ -3,7 +3,7 @@
 #include <string>
 #include "Token.h"
 
-class SeparateToken : public Token<std::string> {
+class SeparateToken : public Token {
 public:
 	SeparateToken(std::string alias, size_t priority) : Token(alias, priority) {};
 };

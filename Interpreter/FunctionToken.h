@@ -1,14 +1,17 @@
 #pragma once
 
-#include <map>
+#include <vector>
 #include "OperatorToken.h"
+#include "Expression.h"
 
 class FunctionToken : public OperatorToken {
 private:
-	void* return_value;
-	std::map<std::string, void*> parameters;
+	size_t number_of_parameters;
+	const Expression* body = nullptr;
 public:
 	FunctionToken(std::string alias, size_t priority,
-		void* return_value, std::map<std::string, void*> parameters)
-		: OperatorToken(alias, priority), return_value(return_value), parameters(parameters) {};
+		size_t number_of_parameters, const Expression& body)
+		: OperatorToken(alias, priority), number_of_parameters(number_of_parameters) {};
+	void setBody(const Expression* body) { this->body = body; }
+	DataToken* evaluate(std::vector<DataToken*> parameters) const;
 };

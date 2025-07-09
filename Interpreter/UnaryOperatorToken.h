@@ -5,22 +5,22 @@
 
 
 template<typename E, typename P>
-class BinaryOperatorToken : public OperatorToken {
+class UnaryOperatorToken : public OperatorToken {
 private:
 	typedef std::function<E(P)> binary_evaluation;
 	binary_evaluation evaluation;
 public:
-	BinaryOperatorToken(std::string alias, size_t priority, binary_evaluation evaluation);
-	E evaluate(P left_operand) const;
+	UnaryOperatorToken(std::string alias, size_t priority, binary_evaluation evaluation);
+	E evaluate(P operand) const;
 };
 
 template<typename E, typename P>
-BinaryOperatorToken<E, P>::BinaryOperatorToken(std::string alias, size_t priority, binary_evaluation evaluation)
+inline UnaryOperatorToken<E, P>::UnaryOperatorToken(std::string alias, size_t priority, binary_evaluation evaluation)
 	: evaluation(evaluation), OperatorToken(alias, priority) {
 }
 
 template<typename E, typename P>
-E BinaryOperatorToken<E, P>::evaluate(P left_operand) const
+inline E UnaryOperatorToken<E, P>::evaluate(P operand) const
 {
-	return evaluation(left_operand, right_operand);
+	return evaluation(operand);
 }

@@ -2,8 +2,15 @@
 
 #include "Token.h"
 
-template<typename T>
-class DataToken : public Token<T> {
+class DataToken : public Token {
 public:
-	DataToken(T alias, size_t priority) : Token<T>(alias, priority) {};
+	DataToken(std::string alias) : Token(alias, 0) {};
+	virtual DataToken* operator+(DataToken& other) const = 0;
+	virtual DataToken* operator-(DataToken& other) const = 0;
+	virtual DataToken* operator*(DataToken& other) const = 0;
+	virtual DataToken* operator/(DataToken& other) const = 0;
+	virtual DataToken* pow(DataToken& pow) const = 0;
+	virtual DataToken* abs() const = 0;
+	virtual DataToken* max(DataToken& other) const = 0;
+	virtual DataToken* min(DataToken& other) const = 0;
 };
