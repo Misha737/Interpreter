@@ -11,6 +11,7 @@ void main() {
 		//case KernelState::OK:
 		//	break;
 		case KernelState::BREAK:
+			is_break = true;
 			break;
 		}
 		if (is_break)
