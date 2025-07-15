@@ -16,5 +16,5 @@ private:
 	Token* initToken();
 	bool isPrefix(const std::string&& prefix);
 public:
-	std::vector<Token*>* parse(const std::string&& line);
+	std::vector<Token*>* parse(const std::string& line);
 };

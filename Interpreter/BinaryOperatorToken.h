@@ -6,7 +6,7 @@
 
 template<typename E, typename L, typename R>
 class BinaryOperatorToken : public OperatorToken {
-private:
+protected:
 	typedef std::function<E(L, R)> binary_evaluation;
 	binary_evaluation evaluation;
 public:
@@ -15,4 +15,5 @@ public:
 	E evaluate(L left_operand, R right_operand) const {
 		return evaluation(left_operand, right_operand);
 	}
+	Token* copy() const override { return new BinaryOperatorToken(alias, priority, evaluation); }
 };

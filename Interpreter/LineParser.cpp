@@ -3,8 +3,9 @@
 #include "TokensHeaders.h"
 #include <stdexcept>
 
-std::vector<Token*>* LineParser::parse(const std::string&& line)
+std::vector<Token*>* LineParser::parse(const std::string& line)
 {
+	begin = 0;
 	this->line = &line;
 	std::vector<Token*>* tokens = new std::vector<Token*>();
 
@@ -21,9 +22,9 @@ std::vector<Token*>* LineParser::parse(const std::string&& line)
 Token* LineParser::initToken() {
 	// Step 1. Key words and base operators
 	if (isPrefix("+")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new SymbolBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"+",
-			0,
+			1,
 			[](DataToken& l, DataToken& r) {
 				return l + r;
 			}
@@ -31,34 +32,34 @@ Token* LineParser::initToken() {
 	}
 	if (isPrefix("-")) {
 		// It can create an OperatorToken and interpret dependencies based on position later
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new SymbolBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"-",
-			0,
+			1,
 			[](DataToken& l, DataToken& r) {
 				return l - r;
 			}
 		);
 	}
 	if (isPrefix("*")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new SymbolBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"*",
-			0,
+			2,
 			[](DataToken& l, DataToken& r) {
 				return l * r;
 			}
 		);
 	}
 	if (isPrefix("/")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new SymbolBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"/",
-			0,
+			2,
 			[](DataToken& l, DataToken& r) {
 				return l / r;
 			}
 		);
 	}
 	if (isPrefix("pow")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new NameBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"pow",
 			0,
 			[](DataToken& l, DataToken& r) {
@@ -76,7 +77,7 @@ Token* LineParser::initToken() {
 		);
 	}
 	if (isPrefix("max")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new NameBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"max",
 			0,
 			[](DataToken& l, DataToken& r) {
@@ -85,7 +86,7 @@ Token* LineParser::initToken() {
 		);
 	}
 	if (isPrefix("min")) {
-		return new BinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
+		return new NameBinaryOperatorToken<DataToken*, DataToken&, DataToken&>(
 			"min",
 			0,
 			[](DataToken& l, DataToken& r) {
@@ -100,23 +101,22 @@ Token* LineParser::initToken() {
 		return new IdentifierToken("def", IdentifierToken::type::DEF);
 	}
 	if (isPrefix("=")) {
-		return new BinaryOperatorToken<void, NameToken&, DataToken&>{
+		return new Token{
 			"=",
-			0,
-			[](NameToken& variable, DataToken& value) {}
+			0
 		};
 	}
 	if (isPrefix("(")) {
 		return new LeftBracketToken("(", 0);
 	}
 	if (isPrefix(")")) {
-		return new LeftBracketToken(")", 0);
+		return new RightBracketToken(")", 0);
 	}
 	if (isPrefix("{")) {
 		return new LeftBracketToken("{", 0);
 	}
 	if (isPrefix("}")) {
-		return new LeftBracketToken("}", 0);
+		return new RightBracketToken("}", 0);
 	}
 	if (isPrefix(",")) {
 		return new SeparateToken(",", 0);

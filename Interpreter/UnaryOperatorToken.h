@@ -12,6 +12,7 @@ private:
 public:
 	UnaryOperatorToken(std::string alias, size_t priority, binary_evaluation evaluation);
 	E evaluate(P operand) const;
+	Token* copy() const override { return new UnaryOperatorToken(alias, priority, evaluation); };
 };
 
 template<typename E, typename P>

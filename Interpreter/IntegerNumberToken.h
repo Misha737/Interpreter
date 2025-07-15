@@ -8,6 +8,7 @@ private:
 public:
 	IntegerNumberToken(std::string alias, int value)
 		: DataToken(alias), value(value) {};
+	IntegerNumberToken(const IntegerNumberToken&);
 	const int getValue() const { return value; };
 	DataToken* operator+(DataToken& other) const override;
 	DataToken* operator-(DataToken& other) const override;
@@ -17,5 +18,6 @@ public:
 	DataToken* abs() const override;
 	DataToken* max(DataToken& other) const override;
 	DataToken* min(DataToken& other) const override;
+	Token* copy() const override { return new IntegerNumberToken(alias, value); };
 
 };

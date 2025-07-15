@@ -5,6 +5,7 @@
 class DataToken : public Token {
 public:
 	DataToken(std::string alias) : Token(alias, 0) {};
+	DataToken(const DataToken& other) : Token(other) {};
 	virtual DataToken* operator+(DataToken& other) const = 0;
 	virtual DataToken* operator-(DataToken& other) const = 0;
 	virtual DataToken* operator*(DataToken& other) const = 0;
@@ -13,4 +14,5 @@ public:
 	virtual DataToken* abs() const = 0;
 	virtual DataToken* max(DataToken& other) const = 0;
 	virtual DataToken* min(DataToken& other) const = 0;
+	Token* copy() const override = 0;
 };

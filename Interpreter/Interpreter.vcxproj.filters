@@ -54,9 +54,6 @@
     <ClInclude Include="DataToken.h">
       <Filter>Header Files\Tokens</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionToken.h">
-      <Filter>Header Files\Tokens</Filter>
-    </ClInclude>
     <ClInclude Include="IntegerNumberToken.h">
       <Filter>Header Files\Tokens</Filter>
     </ClInclude>
@@ -84,8 +81,29 @@
     <ClInclude Include="Expression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SyntaxValidator.h">
+    <ClInclude Include="Command.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NameBinaryOperatorToken.h">
+      <Filter>Header Files\Tokens</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolBinaryOperatorToken.h">
+      <Filter>Header Files\Tokens</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterNameToken.h">
+      <Filter>Header Files\Tokens</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionToken.h">
+      <Filter>Header Files\Tokens</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionToken.h">
+      <Filter>Header Files\Tokens</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableNameToken.h">
+      <Filter>Header Files\Tokens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +123,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringToken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionToken.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

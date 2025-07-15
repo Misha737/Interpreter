@@ -11,3 +11,8 @@
 #include "RightBracketToken.h"
 #include "SeparateToken.h"
 #include "IdentifierToken.h"
+#include "ExpressionToken.h"
+#include "NameBinaryOperatorToken.h"
+#include "SymbolBinaryOperatorToken.h"
+#include "ParameterNameToken.h"
+#include "VariableNameToken.h"

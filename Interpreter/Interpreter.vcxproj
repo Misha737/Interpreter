@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,33 +128,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Expression.cpp" />
+    <ClCompile Include="ExpressionToken.cpp" />
     <ClCompile Include="FloatNumberToken.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="IntegerNumberToken.cpp" />
     <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="LineParser.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="StringToken.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryOperatorToken.h" />
     <ClInclude Include="DataToken.h" />
     <ClInclude Include="Expression.h" />
-    <ClInclude Include="FunctionToken.h" />
+    <ClInclude Include="ExpressionToken.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="FloatNumberToken.h" />
+    <ClInclude Include="FunctionToken.h" />
+    <ClInclude Include="VariableNameToken.h" />
     <ClInclude Include="IdentifierToken.h" />
     <ClInclude Include="IntegerNumberToken.h" />
     <ClInclude Include="Kernel.h" />
     <ClInclude Include="LeftBracketToken.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MessageException.h" />
+    <ClInclude Include="NameBinaryOperatorToken.h" />
     <ClInclude Include="NameToken.h" />
     <ClInclude Include="NotValidTokenEception.h" />
     <ClInclude Include="OperatorToken.h" />
     <ClInclude Include="LineParser.h" />
+    <ClInclude Include="ParameterNameToken.h" />
     <ClInclude Include="RightBracketToken.h" />
     <ClInclude Include="SeparateToken.h" />
     <ClInclude Include="StringToken.h" />
-    <ClInclude Include="SyntaxValidator.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="SymbolBinaryOperatorToken.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="TokensHeaders.h" />
     <ClInclude Include="UnaryOperatorToken.h" />

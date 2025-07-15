@@ -6,4 +6,5 @@
 class OperatorToken : public Token {
 public:
 	OperatorToken(std::string alias, size_t priority) : Token(alias, priority) {};
+	Token* copy() const override = 0;
 };

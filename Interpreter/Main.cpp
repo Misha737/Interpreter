@@ -6,7 +6,7 @@ void main() {
 	Kernel kernel;
 	bool is_break = false;
 	while (true) {
-		std::cin >> input_line;
+		std::getline(std::cin, input_line);
 		switch (kernel.interpret(input_line)) {
 		//case KernelState::OK:
 		//	break;

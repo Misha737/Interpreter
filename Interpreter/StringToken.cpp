@@ -2,6 +2,9 @@
 #include "MessageException.h"
 #include "FloatNumberToken.h"
 #include "IntegerNumberToken.h"
+StringToken::StringToken(const StringToken& other) : DataToken(other)
+{
+}
 DataToken* StringToken::operator+(DataToken& other) const
 {
     if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {

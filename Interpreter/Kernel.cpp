@@ -1,23 +1,29 @@
 #include "Kernel.h"
 #include "Token.h"
-#include "LineParser.h"
 #include "iostream"
 #include <vector>
-#include <typeinfo>
 
-Kernel::Kernel()
+Kernel::Kernel() : command(Command(&memory))
 {
 }
 
 KernelState Kernel::interpret(std::string line)
 {
-    LineParser parser;
-    std::vector<Token*>* tokens = parser.parse("defvar 1234+234.3 () *'sdf doifu234'*asdf2");
-    for (Token* token : *tokens) {
-        
-        std::cout << typeid(*token).name() << std::endl;
-        std::cout << token->getAlias() << std::endl;
-        std::cout << std::endl;
-    }
-    return KernelState::BREAK;
+	if (line == "exit")
+		return KernelState::BREAK;
+	std::vector<Token*>* tokens;
+	try {
+		tokens = parser.parse(line);
+		command.process(*tokens);
+		for (Token* token : *tokens) {
+			delete token;
+		}
+		delete tokens;
+	}
+	catch (const std::exception& ex) {
+		std::cerr << ex.what() << std::endl;
+	}
+
+
+	return KernelState::OK;
 }

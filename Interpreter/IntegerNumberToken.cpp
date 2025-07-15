@@ -4,6 +4,10 @@
 #include "StringToken.h"
 #include <cmath>
 
+IntegerNumberToken::IntegerNumberToken(const IntegerNumberToken& other) : DataToken(other), value(other.value)
+{
+}
+
 DataToken* IntegerNumberToken::operator+(DataToken& other) const
 {
     if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
@@ -59,9 +63,9 @@ DataToken* IntegerNumberToken::operator*(DataToken& other) const
 DataToken* IntegerNumberToken::operator/(DataToken& other) const
 {
     if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
-        int res = this->getValue() / right->getValue();
+        float res = (float)this->getValue() / (float)right->getValue();
         std::string alias = std::to_string(res);
-        return new IntegerNumberToken(alias, res);
+        return new FloatNumberToken(alias, res);
     }
     if (FloatNumberToken* right = dynamic_cast<FloatNumberToken*>(&other)) {
         float res = (float)this->getValue() / right->getValue();

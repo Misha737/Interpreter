@@ -1,13 +1,22 @@
 #pragma once
 
 #include "DataToken.h"
+#include "NameToken.h"
+#include "Memory.h"
 #include <vector>
 
 class Expression {
 private:
-	std::vector<const Token*> expression;
-public:
-	Expression(std::vector<const Token*> infix);
+	std::vector<Token*> tokens;
 	void toPostfix();
-	DataToken* evaluate() const;
+public:
+	Expression(std::vector<Token*> infix);
+	Expression(const Expression&);
+	~Expression();
+	DataToken* evaluate(Memory* memory) const;
+	DataToken* evaluate(Memory* memory, std::vector<Expression*>* env) const;
+	Token* operator[](size_t index) { return tokens.at(index); }
+	void bindParameters(const std::vector<NameToken*>& parameters);
+	Expression* copy() const;
+	std::vector<Token*>* getTokens() { return &tokens; }
 };

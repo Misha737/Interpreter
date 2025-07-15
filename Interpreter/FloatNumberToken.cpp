@@ -4,10 +4,14 @@
 #include "StringToken.h"
 #include <cmath>
 
+FloatNumberToken::FloatNumberToken(const FloatNumberToken& other) : DataToken(other), value(other.value)
+{
+}
+
 DataToken* FloatNumberToken::operator+(DataToken& other) const
 {
 	if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
-		int res = this->getValue() + (float)right->getValue();
+		float res = this->getValue() + (float)right->getValue();
 		std::string alias = std::to_string(res);
 		return new FloatNumberToken(alias, res);
 	}
@@ -27,7 +31,7 @@ DataToken* FloatNumberToken::operator+(DataToken& other) const
 DataToken* FloatNumberToken::operator-(DataToken& other) const
 {
 	if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
-		int res = this->getValue() - (float)right->getValue();
+		float res = this->getValue() - (float)right->getValue();
 		std::string alias = std::to_string(res);
 		return new FloatNumberToken(alias, res);
 	}
@@ -43,7 +47,7 @@ DataToken* FloatNumberToken::operator-(DataToken& other) const
 DataToken* FloatNumberToken::operator*(DataToken& other) const
 {
 	if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
-		int res = this->getValue() * (float)right->getValue();
+		float res = this->getValue() * (float)right->getValue();
 		std::string alias = std::to_string(res);
 		return new FloatNumberToken(alias, res);
 	}
@@ -59,7 +63,7 @@ DataToken* FloatNumberToken::operator*(DataToken& other) const
 DataToken* FloatNumberToken::operator/(DataToken& other) const
 {
 	if (IntegerNumberToken* right = dynamic_cast<IntegerNumberToken*>(&other)) {
-		int res = this->getValue() / (float)right->getValue();
+		float res = this->getValue() / (float)right->getValue();
 		std::string alias = std::to_string(res);
 		return new FloatNumberToken(alias, res);
 	}
